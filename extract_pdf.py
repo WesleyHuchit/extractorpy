@@ -2,12 +2,15 @@ import sys
 import json
 import pdfplumber
 import re
+from io import BytesIO
 
 
-def extract_texts(pdf_path):
+def extract_texts():
+    pdf_bytes = sys.stdin.buffer.read()
 
     text = ""
-    with pdfplumber.open(pdf_path) as pdf:
+    # with pdfplumber.open(pdf_bytes) as pdf:
+    with pdfplumber.open(BytesIO(pdf_bytes)) as pdf:
       for page in pdf.pages:
         text += page.extract_text()
     return text
@@ -17,9 +20,9 @@ def regex_search(text, pattern):
     return result
 
 if __name__ == "__main__":
-    pdf_path = sys.argv[1]
+    # pdf_path = sys.argv[1]
 
-    data = extract_texts(pdf_path)
+    data = extract_texts()
 
     bodyWorkPattern = re.compile(r"funilaria \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2}",
                          re.IGNORECASE)
@@ -40,10 +43,22 @@ if __name__ == "__main__":
        autoElectricalRepairPattern
     ]
 
+    # patterns = [
+    #    ('bodyWork', bodyWorkPattern),
+    #    ('mechanicalRepair', mechanicalRepairPattern),
+    #    ('autoUpholstery', autoUpholsteryPattern),
+    #    ('detailing', detailingPattern),
+    #    ('autoElectricalRepair', autoElectricalRepairPattern)
+    # ]
+
+
     # result = regex_search(data, bodyWorkPattern)
     # print(json.dumps(result, ensure_ascii=False))
 
+    allResults = []
+
     for pattern in patterns:
       result = regex_search(data, pattern)
-      print(json.dumps(result, ensure_ascii=False))
+      allResults.append(result)
 
+    print(json.dumps(allResults, ensure_ascii=False))
