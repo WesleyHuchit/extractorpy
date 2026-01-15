@@ -16,16 +16,6 @@ def regex_search(text, pattern):
     result = re.findall(pattern, text)
     return result
 
-#  export const REGEX = {
-#     bodyWork: /funilaria \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2}/gi,
-#     mechanicalRepair: /mecânica \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2}/gi,
-#     autoUpholstery: /tapeçaria \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2}/gi,
-#     detailing: /acabamen \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2}/gi,
-#     autoElectricalRepair: /elétrica \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2} \d{1,3}.\d{2}/gi
-# }
-
-
-
 if __name__ == "__main__":
     pdf_path = sys.argv[1]
 
